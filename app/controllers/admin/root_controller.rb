@@ -1,6 +1,7 @@
 class Admin::RootController < ApplicationController
   layout 'login'
 
+  skip_before_action :require_site
   skip_before_action :require_login
 
   before_action -> { redirect_to admin_login_identifier_url if current_site.present? }

@@ -5,9 +5,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :require_site
   before_action :require_login
 
   private
+
+  def render_not_found_error(exception = nil)
+    if exception
+      logger.info "Rendering 404 with exception: #{exception.message}"
+    end
+    render file: "#{Rails.root}/public/404.html", status: 404, content_type: 'text/html', layout: false
+  end
+
+  def require_site
+    render_not_found_error if current_site.blank?
+  end
 
   def current_site
     @current_site ||= Site.first

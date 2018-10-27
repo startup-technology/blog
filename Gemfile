@@ -131,19 +131,11 @@ group :development, :test do
   # Table/Schema
   gem 'annotate'
   gem 'migration_comments'
-
-  # Deploy
-  gem 'capistrano', '3.9.0'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rails-console'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-resque', require: false
-  gem 'capistrano3-puma'
 end
 
 group :test do
   gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'fuubar'
   gem 'launchy'

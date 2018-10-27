@@ -16,6 +16,11 @@
 - Redis
 - Node.js >= 6.0.0
 - Yarn >= 0.20.1
+- Production
+  - Heroku
+  - AWS S3
+- CI
+  - Circle CI
 
 ## Project initiation
 
@@ -31,7 +36,7 @@ $ git@github.com:startup-technology/blog.git
 $ bundle install --path vendor/bundle
 ```
 
-- npmのインストール
+- npmパッケージのインストール
 
 ```bash
 $ yarn install
@@ -44,13 +49,13 @@ $ yarn install
 - データベースの設定
 
 ```bash
-$ cp config/database.yml.default config/database.yml
+$ cp -v config/database.yml{.default,}
 ```
 
 - 環境変数の設定
 
 ```bash
-$ cp .env.default .env
+$ cp -v .env{.default,}
 ```
 
 *AWSのアクセスキーなどは個別に担当者に聞いてください。*
@@ -58,13 +63,13 @@ $ cp .env.default .env
 ### Database creation
 
 ```bash
-$ rake db:create db:reset
+$ bundle exec rails db:create db:schema:load
 ```
 
 ### Database initialization
 
 ```bash
-$ rake db:seed
+$ bundle exec rails db:seed
 ```
 
 ## Run rails server
@@ -75,20 +80,30 @@ $ bundle exec rails server
 
 ## Webpacker
 
-JavaScriptのコンパイル
+JavaScriptのビルド
 
 ```
 $ ./bin/webpack
 ```
 
-サーバーの起動
+webpack-dev-server の起動
 
 ```
 $ ./bin/webpack-dev-server
 ```
 
+## Spec
+
+.rspec の設定
+
 ```bash
-$ spring rspec spec/[対象ファイル]
+$ cp -v .rspec.default .rspec
+```
+
+テストの実行
+
+```bash
+$ bundle exec bin/rspec
 ```
 
 ## How to run the static code analysis
@@ -146,6 +161,6 @@ $ bundle exec slim-lint
 - See `app/controllers/development/sessions_controller.rb`
 
 ```
-/login_as/[user_id]
+http://localhost:3000/login_as/[user_id]
 ```
 

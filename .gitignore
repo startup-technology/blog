@@ -25,6 +25,8 @@ pickle-email-*.html
 /config/initializers/secret_token.rb
 /config/database.yml
 /config/master.key
+/config/settings.local.yml
+/config/settings/*.local.yml
 .env
 
 ## Environment normalisation:
